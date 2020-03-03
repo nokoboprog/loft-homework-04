@@ -11,7 +11,7 @@ use src\classes\DailyRate;
 use src\classes\StudentRate;
 
 try {
-    //В строке 16 создайте нужный Вам объект/тариф с необходимыми данными.
+    //В строке 15 создайте нужный Вам объект/тариф с необходимыми данными.
     $obj = new BaseRate(1, 1, 18, true, false);
     $result = $obj->calculateTotalPrice();
     echo "Сумма вашей поездки составялет: $result руб.";
