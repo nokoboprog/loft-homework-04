@@ -2,15 +2,20 @@
 
 namespace src\classes;
 
+use Exception;
+
 require_once 'src\classes\AbstractRate.php';
 
 class StudentRate extends AbstractRate
 {
-    const PRICE_FOR_KM = 4;
-    const PRICE_FOR_MIN = 1;
+    protected $priceForKm = 4;
+    protected $priceForTime = 1;
 
-    public function calculateTotalPrice()
+    protected function checkAge($age)
     {
-        return ($this->km * self::PRICE_FOR_KM + $this->minutes * self::PRICE_FOR_MIN) * $this->youthRatio + $this->additionalServicesCost;
+        parent::checkAge($age);
+        if ($age > self::AGE_STUDENT && $this) {
+            throw new Exception('Ваш возраст не подходит для данного тарифа, выберите другой.');
+        }
     }
 }
