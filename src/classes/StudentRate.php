@@ -9,7 +9,7 @@ require_once 'src\classes\AbstractRate.php';
 class StudentRate extends AbstractRate
 {
     protected $priceForKm = 4;
-    protected $priceForTime = 1;
+    protected $priceForMinutes = 1;
 
     protected function checkAge($age)
     {

@@ -24,8 +24,9 @@ abstract class AbstractRate implements RateInterface
     const SECOND_DRIVER_PRICE = 100;
     protected $km;
     protected $priceForKm;
+    protected $minutesForInfo;
     protected $minutes;
-    protected $priceForTime;
+    protected $priceForMinutes;
     protected $age;
     protected $youthRatio = 1;
     protected $isGps;
@@ -35,6 +36,7 @@ abstract class AbstractRate implements RateInterface
     public function __construct($km, $minutes, $age, $isGps = false, $isSecondDriver = false)
     {
         $this->km = $km;
+        $this->minutesForInfo = $minutes;
         $this->minutes = $minutes;
         $this->age = $age;
         $this->checkAge($age);
@@ -55,7 +57,7 @@ abstract class AbstractRate implements RateInterface
     {
         echo "Ваш возраст: $this->age<br>";
         echo "Количество пройденных км: $this->km<br>";
-        echo "Количество затраченных минут: $this->minutes<br>";
+        echo "Количество затраченных минут: $this->minutesForInfo<br>";
         $gps = $this->isGps === true ? 'Да' : 'Нет';
         echo "Услуга 'GPS': $gps<br>";
         $secondDriver = $this->isSecondDriver === true ? 'Да' : 'Нет';
@@ -70,6 +72,6 @@ abstract class AbstractRate implements RateInterface
         if ($this->isSecondDriver) {
             $this->additionalServicesCost += $this->getSecondDriverCost();
         }
-        return ($this->km * $this->priceForKm + $this->minutes * $this->priceForTime) * $this->youthRatio + $this->additionalServicesCost;
+        return ($this->km * $this->priceForKm + $this->minutes * $this->priceForMinutes) * $this->youthRatio + $this->additionalServicesCost;
     }
 }

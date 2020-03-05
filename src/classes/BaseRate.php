@@ -7,5 +7,5 @@ require_once 'src\classes\AbstractRate.php';
 class BaseRate extends AbstractRate
 {
     protected $priceForKm = 10;
-    protected $priceForTime = 3;
+    protected $priceForMinutes = 3;
 }
